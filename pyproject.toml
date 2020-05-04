@@ -1,15 +1,47 @@
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"
+
 [tool.poetry]
 name = "textract-trp"
 version = "0.1.0"
-description = ""
+license = "MIT"
+description = "Parser for Amazon Textract results."
 authors = ["Michael Ludvig <mludvig@logix.net.nz>"]
+keywords = [ 'textract', 'trp' ]
+readme = "README.md"
+repository = "https://github.com/mludvig/amazon-textract-trp"
+
+packages = [
+    { include = "trp" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.6"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = ""
+pylint = ""
+pytest-cov = ""
+tox = "^3.0"
 
-[build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+isolated_build = True
+envlist = py36,py37,py38
+
+[testenv]
+deps =
+  pylint
+  pytest
+  pytest-cov
+commands =
+  #pylint --exit-zero trp
+  #pylint --exit-zero --disable=protected-access test
+  #pylint -E trp test
+  pytest -v --cov trp --cov-report term-missing
+
+[tox:.package]
+basepython = python3
+"""
