@@ -10,7 +10,7 @@ description = "Parser for Amazon Textract results."
 authors = ["Michael Ludvig <mludvig@logix.net.nz>"]
 keywords = [ 'textract', 'trp' ]
 readme = "README.md"
-repository = "https://github.com/mludvig/amazon-textract-trp"
+repository = "https://github.com/mludvig/amazon-textract-parser"
 
 packages = [
     { include = "trp" },
