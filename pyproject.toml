@@ -4,7 +4,7 @@ build-backend = "poetry.masonry.api"
 
 [tool.poetry]
 name = "textract-trp"
-version = "0.1.2"       # Don't forget to update trp/__version__.py as well!
+version = "0.1.3"       # Don't forget to update trp/__version__.py as well!
 license = "MIT"
 description = "Parser for Amazon Textract results."
 authors = ["Michael Ludvig <mludvig@logix.net.nz>"]
