@@ -24,6 +24,7 @@ pytest = ""
 pylint = ""
 pytest-cov = ""
 tox = "^3.0"
+toml = ""
 
 [tool.tox]
 legacy_tox_ini = """

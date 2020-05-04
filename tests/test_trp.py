@@ -1,17 +1,17 @@
 import os
 import json
+import toml
 
-from trp import (
-    __version__,
-    BoundingBox,
-    Document,
-)
+import trp
 
-print(__file__)
-blocks_json = os.path.join(os.path.dirname(__file__), "blocks.json")
+_our_dir = os.path.dirname(__file__)
+blocks_json = os.path.join(_our_dir, "blocks.json")
+pyproject_toml = os.path.join(_our_dir, "..", "pyproject.toml")
 
 def test_version():
-    assert __version__ == '0.1.0'
+    with open(pyproject_toml, "rt") as f:
+        pyproject = toml.load(f)
+    assert pyproject['tool']['poetry']['version'] == trp.__version__
 
 def test_BoundingBox():
     width = 0.01
@@ -19,7 +19,7 @@ def test_BoundingBox():
     left = 0.3
     top = 0.5
 
-    bbox = BoundingBox(width, height, left, top)
+    bbox = trp.BoundingBox(width, height, left, top)
 
     assert bbox.top == top
     assert bbox.bottom == top + height
@@ -32,5 +32,5 @@ def test_BoundingBox():
 def test_Document():
     with open(blocks_json, "rt") as f:
         blocks = json.load(f)
-    doc = Document(blocks)
+    doc = trp.Document(blocks)
     assert doc
